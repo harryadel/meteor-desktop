@@ -31,8 +31,6 @@ jobs:
               else
                 curl https://install.meteor.com/?release=2.6 | /bin/sh
               fi
-      - name: Install dependencies
-        if: steps.files-cache.outputs.cache-hit != 'true'
       - name: Install NPM Dependencies
         if: steps.files-cache.outputs.cache-hit != 'true'
         run: ~/.meteor/meteor npm ci
