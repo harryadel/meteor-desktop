@@ -24,6 +24,8 @@ jobs:
            tests/.__tmp_int
          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
       - uses: actions/meteor@v1
+        with:
+          meteor-release: '2.6'
         if: steps.files-cache.outputs.cache-hit != 'true'
       - name: Install NPM Dependencies
         if: steps.files-cache.outputs.cache-hit != 'true'
