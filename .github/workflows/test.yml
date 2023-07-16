@@ -48,9 +48,6 @@ jobs:
       - run: npm run test-integration
       - uses: actions/cache@v3
         with:
-          key: meteor-cache-{{ checksum "tests/integration/prepare.js" }}
-          restore-keys: |
-            meteor-cache-{{ checksum "tests/integration/prepare.js" }}
           path: |
             ~/.meteor
             tests/.__tmp_int
