@@ -28,7 +28,7 @@ jobs:
           if [ -e ~/.meteor/meteor ]
           then
               echo "Cached Meteor bin found, restoring it"
-              sudo cp ~/.meteor/meteor-bin /usr/local/bin/meteor
+              sudo cp ~/.meteor/meteor /usr/local/bin/meteor
           else
               echo "No cached Meteor bin found."
            fi
