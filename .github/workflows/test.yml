@@ -62,6 +62,6 @@ jobs:
           key: meteor-cache-{{ checksum "tests/integration/prepare.js" }}-{{ checksum ".circleci/config.yml" }}
           restore-keys: |
             meteor-cache-{{ checksum "tests/integration/prepare.js" }}-{{ checksum ".circleci/config.yml" }}-
-          paths:
-            - ~/.meteor
-            - tests/.__tmp_int
+          path: |
+            ~/.meteor
+            tests/.__tmp_int
