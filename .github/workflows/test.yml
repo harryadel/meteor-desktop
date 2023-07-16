@@ -18,15 +18,16 @@ jobs:
         run: command -v meteor >/dev/null 2>&1 || curl https://install.meteor.com/?release=2.6 | /bin/sh
       - name: Cache NPM dependencies # (2)
         uses: actions/cache@v3
-        id: npm-cache
+        id: files-cache
         with:
          path: |
            node_modules
            dist/
+           ~/.meteor
          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
 
       - name: Install dependencies # (3)
-        if: steps.npm-cache.outputs.cache-hit != 'true'
+        if: steps.files-cache.outputs.cache-hit != 'true'
         run: meteor npm ci
       - run: meteor npm run test
 
