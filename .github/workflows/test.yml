@@ -44,8 +44,8 @@ jobs:
     name: Integration Tests
     runs-on: ubuntu-latest
     steps:
+      - run: ls ~/.meteor
       - name: Unit Tests
-        run: ls ~/.meteor
         run: meteor npm run test
 
   test-integration:
