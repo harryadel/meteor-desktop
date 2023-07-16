@@ -18,9 +18,10 @@ jobs:
         id: files-cache
         with:
          path: |
-           .
+           node_modules
+           dist/
            ~/.meteor
-           /tmp
+           /tmp/tests/.__tmp_int
          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
       - name: Install/Retrieve Meteor
         run: |
@@ -45,9 +46,10 @@ jobs:
        id: files-cache
        with:
          path: |
-           .
+           node_modules
+           dist/
            ~/.meteor
-           /tmp
+           /tmp/tests/.__tmp_int
          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
      - run: ls ~/.meteor
      - run: ls
