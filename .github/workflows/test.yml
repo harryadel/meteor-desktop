@@ -41,18 +41,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
      - name: Cache dependencies
-        uses: actions/cache@v3
-        id: files-cache
-        with:
+       uses: actions/cache@v3
+       id: files-cache
+       with:
          path: |
            node_modules
            dist/
            ~/.meteor
            tests/.__tmp_int
          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
-      - run: ls ~/.meteor
-      - name: Unit Tests
-        run: meteor npm run test
+     - run: ls ~/.meteor
+     - name: Unit Tests
+       run: meteor npm run test
 
   test-integration:
     needs: build
