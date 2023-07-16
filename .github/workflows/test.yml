@@ -20,15 +20,15 @@ jobs:
           cache: 'npm'
       - name: Cache NPM dependencies # (2)
         uses: actions/cache@v3
-        id: cache-primes
+        id: npm-cache
         with:
          path: |
            node_modules
-           dist/scripts/addToScripts
+           dist/
          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
 
       - name: Install dependencies # (3)
-        if: steps.cache-primes.outputs.cache-hit != 'true'
+        if: steps.npm-cache.outputs.cache-hit != 'true'
         run: npm ci
       - run: npm run test
 
