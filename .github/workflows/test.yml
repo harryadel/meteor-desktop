@@ -41,16 +41,16 @@ jobs:
             fi
       - run: |
             # only install meteor if bin isn't found
-            command -v meteor >/dev/null 2>&1 || curl https://install.meteor.com/?release=2.12 | /bin/sh
+            command -v meteor >/dev/null 2>&1 || curl https://install.meteor.com/?release=2.6 | /bin/sh
       - run: |
             cp /usr/local/bin/meteor ~/.meteor/meteor-bin
       - run: npm run prepare-integration-tests
       - run: npm run test-integration
       - uses: actions/cache@v3
         with:
-          key: meteor-cache-{{ checksum "tests/integration/prepare.js" }}-{{ checksum ".circleci/config.yml" }}
+          key: meteor-cache-{{ checksum "tests/integration/prepare.js" }}
           restore-keys: |
-            meteor-cache-{{ checksum "tests/integration/prepare.js" }}-{{ checksum ".circleci/config.yml" }}-
+            meteor-cache-{{ checksum "tests/integration/prepare.js" }}
           path: |
             ~/.meteor
             tests/.__tmp_int
