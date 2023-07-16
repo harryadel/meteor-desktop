@@ -24,7 +24,7 @@ jobs:
            ~/.meteor
          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
       - name: Install/Retrieve Meteor
-        run:
+        run: |
         var="$(~/.meteor/meteor --version)"
         if [[ $var =~ "Meteor 2.6" ]]; then
             echo "Up-to-date"
