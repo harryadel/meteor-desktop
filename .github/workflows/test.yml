@@ -43,7 +43,7 @@ test:
     runs-on: ubuntu-latest
     steps:
       - name: Unit Tests
-      - run: ~/.meteor/meteor npm run test
+        run: ~/.meteor/meteor npm run test
 
 test-integration:
     needs: build
