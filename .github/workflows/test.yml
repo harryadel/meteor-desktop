@@ -51,7 +51,6 @@ jobs:
            ~/.meteor
            tests/.__tmp_int
         key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
-     - run: ls
      - name: Unit Tests
        run: ~/.meteor/meteor npm run test
 
@@ -61,5 +60,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: meteor npm run prepare-integration-tests
-      - run: meteor npm run test-integration
+      - run: ~/.meteor/meteor npm run prepare-integration-tests
+      - run: ~/.meteor/meteor npm run test-integration
