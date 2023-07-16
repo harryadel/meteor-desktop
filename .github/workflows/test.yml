@@ -25,8 +25,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Update npm
-        run: sudo npm install -g npm@6
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
       - uses: actions/cache@v3
         with:
           key: dependency-cache-{{ checksum "package.json" }}-{{ checksum ".circleci/config.yml" }}
