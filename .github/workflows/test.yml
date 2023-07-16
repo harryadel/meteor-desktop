@@ -33,6 +33,7 @@ jobs:
   test:
     needs: build
     name: Integration Tests
+    runs-on: ubuntu-latest
     steps:
       - name: Unit Tests
         run: meteor npm run test
@@ -40,6 +41,7 @@ jobs:
   test-integration:
     needs: build
     name: Integration Tests
+    runs-on: ubuntu-latest
     steps:
       - run: meteor npm run prepare-integration-tests
       - run: meteor npm run test-integration
