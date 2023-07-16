@@ -32,14 +32,16 @@ jobs:
       - name: Update npm
         run: sudo npm install -g npm@6
       - uses: actions/cache@v2
-        key: dependency-cache-{{ checksum "package.json" }}-{{ checksum ".circleci/config.yml" }}
-        restore-keys: |
-          dependency-cache-{{ checksum "package.json" }}-{{ checksum ".circleci/config.yml" }}-
+        with:
+          key: dependency-cache-{{ checksum "package.json" }}-{{ checksum ".circleci/config.yml" }}
+          restore-keys: |
+           dependency-cache-{{ checksum "package.json" }}-{{ checksum ".circleci/config.yml" }}-
       - run: npm install
       - uses: actions/cache@v2
-        key: meteor-cache-{{ checksum "tests/integration/prepare.js" }}-{{ checksum ".circleci/config.yml" }}
-        restore-keys: |
-          meteor-cache-{{ checksum "tests/integration/prepare.js" }}-{{ checksum ".circleci/config.yml" }}-
+        with:
+          key: meteor-cache-{{ checksum "tests/integration/prepare.js" }}-{{ checksum ".circleci/config.yml" }}
+          restore-keys: |
+            meteor-cache-{{ checksum "tests/integration/prepare.js" }}-{{ checksum ".circleci/config.yml" }}-
       - run: |
             if [ -e ~/.meteor/meteor-bin ]
             then
@@ -56,9 +58,10 @@ jobs:
       - run: npm run prepare-integration-tests
       - run: npm run test-integration
       - uses: actions/cache@v2
-        key: meteor-cache-{{ checksum "tests/integration/prepare.js" }}-{{ checksum ".circleci/config.yml" }}
-        restore-keys: |
-          meteor-cache-{{ checksum "tests/integration/prepare.js" }}-{{ checksum ".circleci/config.yml" }}-
+        with:
+          key: meteor-cache-{{ checksum "tests/integration/prepare.js" }}-{{ checksum ".circleci/config.yml" }}
+          restore-keys: |
+            meteor-cache-{{ checksum "tests/integration/prepare.js" }}-{{ checksum ".circleci/config.yml" }}-
           paths:
             - ~/.meteor
             - tests/.__tmp_int
