@@ -28,7 +28,7 @@ jobs:
           if [ -e ~/.meteor/meteor ]
           then
               echo "Cached Meteor bin found, restoring it"
-              sudo cp ~/.meteor/meteor /usr/local/bin/meteor
+              sudo cp ~/.meteor/meteor /usr/bin/meteor
           else
               echo "No cached Meteor bin found."
            fi
@@ -42,26 +42,7 @@ jobs:
 #   test-integration:
 #     name: Integration Tests
 #     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v3
-#       - uses: actions/setup-node@v3
-#         with:
-#           node-version: 14
-#           cache: 'npm'
-#       - run: npm install
-#       - run: |
-#             if [ -e ~/.meteor/meteor-bin ]
-#             then
-#                 echo "Cached Meteor bin found, restoring it"
-#                 sudo cp ~/.meteor/meteor-bin /usr/local/bin/meteor
-#             else
-#                 echo "No cached Meteor bin found."
-#             fi
-#       - run: |
-#             # only install meteor if bin isn't found
-#             command -v meteor >/dev/null 2>&1 || curl https://install.meteor.com/?release=2.6 | /bin/sh
-#       - run: |
-#             cp /usr/local/bin/meteor ~/.meteor/meteor-bin
+
 #       - run: npm run prepare-integration-tests
 #       - run: npm run test-integration
 #       - uses: actions/cache@v3
