@@ -40,16 +40,17 @@ jobs:
     name: Unit Tests
     runs-on: ubuntu-latest
     steps:
-    #  - name: Cache dependencies
-    #    uses: actions/cache@v3
-    #    id: files-cache
-    #    with:
-    #     path: |
-    #        node_modules
-    #        dist/
-    #        ~/.meteor
-    #        tests/.__tmp_int
-    #     key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+     - uses: actions/checkout@v3
+     - name: Cache dependencies
+       uses: actions/cache@v3
+       id: files-cache
+       with:
+        path: |
+           node_modules
+           dist/
+           ~/.meteor
+           tests/.__tmp_int
+        key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
      - run: ls
      - name: Unit Tests
        run: ~/.meteor/meteor npm run test
@@ -59,5 +60,6 @@ jobs:
     name: Integration Tests
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - run: meteor npm run prepare-integration-tests
       - run: meteor npm run test-integration
