@@ -33,7 +33,7 @@ jobs:
       - name: Run Tests
         run: |
           meteor npm run test
-          meteor run prepare-integration-tests && meteor npm run test-integration
+          meteor npm run prepare-integration-tests && meteor npm run test-integration
 
 #   test:
 #     needs: build
