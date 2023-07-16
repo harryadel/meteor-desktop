@@ -28,8 +28,7 @@ jobs:
       - name: Install NPM Dependencies
         if: steps.files-cache.outputs.cache-hit != 'true'
         run: ~/.meteor/meteor npm ci
-
-test:
+  test:
     needs: build
     name: Integration Tests
     runs-on: ubuntu-latest
@@ -37,7 +36,7 @@ test:
       - name: Unit Tests
         run: ~/.meteor/meteor npm run test
 
-test-integration:
+  test-integration:
     needs: build
     name: Integration Tests
     runs-on: ubuntu-latest
