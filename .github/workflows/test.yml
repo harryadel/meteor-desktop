@@ -9,12 +9,12 @@ on:
       - master
 
 jobs:
-  test:
-    name: Unit Tests
+  build:
+    name: Build and Install
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Cache dependencies # (2)
+      - name: Cache dependencies
         uses: actions/cache@v3
         id: files-cache
         with:
@@ -22,6 +22,7 @@ jobs:
            node_modules
            dist/
            ~/.meteor
+           tests/.__tmp_int
          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
       - name: Install/Retrieve Meteor
         run: |
@@ -33,17 +34,19 @@ jobs:
               fi
       - name: Install dependencies
         if: steps.files-cache.outputs.cache-hit != 'true'
+      - name: Install NPM Dependencies
         run: ~/.meteor/meteor npm ci
+
+test:
+    needs: build
+    name: Integration Tests
+    runs-on: ubuntu-latest
+      - name: Unit Tests
       - run: ~/.meteor/meteor npm run test
 
-#   test-integration:
-#     name: Integration Tests
-#     runs-on: ubuntu-latest
-
-#       - run: npm run prepare-integration-tests
-#       - run: npm run test-integration
-#       - uses: actions/cache@v3
-#         with:
-#           path: |
-#             ~/.meteor
-#             tests/.__tmp_int
+test-integration:
+    needs: build
+    name: Integration Tests
+    runs-on: ubuntu-latest
+      - run: ~/.meteor/meteor npm run prepare-integration-tests
+      - run: ~/.meteor/meteor npm run test-integration
