@@ -18,9 +18,9 @@ jobs:
         run: sudo npm install -g npm@6
       - uses: actions/cache@v2
         with:
-            key: dependency-cache-{{ checksum "package.json" }}
-            restore-keys: |
-            dependency-cache-{{ checksum "package.json" }}-
+          key: dependency-cache-{{ checksum "package.json" }}
+          restore-keys: |
+          dependency-cache-{{ checksum "package.json" }}-
       - run: npm install
       - run: npm run test
 
