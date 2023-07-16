@@ -14,9 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Install Meteor
-        run: command -v meteor >/dev/null 2>&1 || curl https://install.meteor.com/?release=2.6 | /bin/sh
-      - name: Cache NPM dependencies # (2)
+      - name: Cache dependencies # (2)
         uses: actions/cache@v3
         id: files-cache
         with:
@@ -25,7 +23,8 @@ jobs:
            dist/
            ~/.meteor
          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
-
+      - name: Install Meteor
+        run: command -v meteor >/dev/null 2>&1 || curl https://install.meteor.com/?release=2.6 | /bin/sh
       - name: Install dependencies # (3)
         if: steps.files-cache.outputs.cache-hit != 'true'
         run: meteor npm ci
