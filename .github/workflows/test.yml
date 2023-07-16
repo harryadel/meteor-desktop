@@ -17,10 +17,12 @@ jobs:
       - name: Update npm
         run: sudo npm install -g npm@6
       - uses: actions/cache@v3
+        id: npm-cache # use this to check for `cache-hit` ==> if: steps.npm-cache.outputs.cache-hit != 'true'
         with:
-          key: dependency-cache-{{ checksum "package.json" }}
-          restore-keys: |
-           dependency-cache-{{ checksum "package.json" }}-
+         path: ${{ steps.npm-cache-dir.outputs.dir }}
+         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+         restore-keys: |
+          ${{ runner.os }}-node-
       - run: npm install
       - run: npm run test
 
@@ -32,10 +34,12 @@ jobs:
       - name: Update npm
         run: sudo npm install -g npm@6
       - uses: actions/cache@v3
+        id: npm-cache # use this to check for `cache-hit` ==> if: steps.npm-cache.outputs.cache-hit != 'true'
         with:
-          key: dependency-cache-{{ checksum "package.json" }}-{{ checksum ".circleci/config.yml" }}
-          restore-keys: |
-           dependency-cache-{{ checksum "package.json" }}-{{ checksum ".circleci/config.yml" }}-
+         path: ${{ steps.npm-cache-dir.outputs.dir }}
+         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+         restore-keys: |
+          ${{ runner.os }}-node-
       - run: npm install
       - uses: actions/cache@v3
         with:
