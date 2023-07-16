@@ -29,19 +29,19 @@ jobs:
         if: steps.files-cache.outputs.cache-hit != 'true'
       - name: Install NPM Dependencies
         if: steps.files-cache.outputs.cache-hit != 'true'
-        run: ~/.meteor/meteor npm ci
+        run: meteor npm ci
   test:
     needs: build
     name: Integration Tests
     runs-on: ubuntu-latest
     steps:
       - name: Unit Tests
-        run: ~/.meteor/meteor npm run test
+        run: meteor npm run test
 
   test-integration:
     needs: build
     name: Integration Tests
     runs-on: ubuntu-latest
     steps:
-      - run: ~/.meteor/meteor npm run prepare-integration-tests
-      - run: ~/.meteor/meteor npm run test-integration
+      - run: meteor npm run prepare-integration-tests
+      - run: meteor npm run test-integration
