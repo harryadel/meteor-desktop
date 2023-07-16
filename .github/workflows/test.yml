@@ -21,7 +21,7 @@ jobs:
            node_modules
            dist/
            ~/.meteor
-           /tmp/tests/.__tmp_int
+           tests/.__tmp_int
          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
       - name: Install/Retrieve Meteor
         run: |
@@ -33,8 +33,7 @@ jobs:
               fi
       - name: Install NPM Dependencies
         if: steps.files-cache.outputs.cache-hit != 'true'
-        run: pwd && meteor npm ci
-      - run: pwd %% ls
+        run: meteor npm ci
 
   test:
     needs: build
@@ -52,10 +51,8 @@ jobs:
            tests/.__tmp_int
          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
      - run: ls ~/.meteor
-     - run: ls
-     - run: pwd
      - name: Unit Tests
-       run: ~/.meteor/meteor npm run test
+       run: meteor npm run test
 
   test-integration:
     needs: build
