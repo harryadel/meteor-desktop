@@ -13,10 +13,10 @@ jobs:
     name: Unit Tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Update npm
         run: sudo npm install -g npm@6
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         with:
           key: dependency-cache-{{ checksum "package.json" }}
           restore-keys: |
@@ -28,16 +28,16 @@ jobs:
     name: Integration Tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Update npm
         run: sudo npm install -g npm@6
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         with:
           key: dependency-cache-{{ checksum "package.json" }}-{{ checksum ".circleci/config.yml" }}
           restore-keys: |
            dependency-cache-{{ checksum "package.json" }}-{{ checksum ".circleci/config.yml" }}-
       - run: npm install
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         with:
           key: meteor-cache-{{ checksum "tests/integration/prepare.js" }}-{{ checksum ".circleci/config.yml" }}
           restore-keys: |
@@ -57,7 +57,7 @@ jobs:
             cp /usr/local/bin/meteor ~/.meteor/meteor-bin
       - run: npm run prepare-integration-tests
       - run: npm run test-integration
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         with:
           key: meteor-cache-{{ checksum "tests/integration/prepare.js" }}-{{ checksum ".circleci/config.yml" }}
           restore-keys: |
