@@ -50,7 +50,7 @@ jobs:
            ~/.meteor
            tests/.__tmp_int
         key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
-     - run: ls ~/.meteor
+     - run: ls
      - name: Unit Tests
        run: ~/.meteor/meteor npm run test
 
