@@ -23,8 +23,8 @@ jobs:
            dist/
            ~/.meteor
          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
-      - name: Install Meteor
-        run: command -v meteor >/dev/null 2>&1 || curl https://install.meteor.com/?release=2.6 | /bin/sh
+      - name: Install/Retrieve Meteor
+        run:  meteor --version || curl https://install.meteor.com/?release=2.6 | /bin/sh
       - name: Install dependencies # (3)
         if: steps.files-cache.outputs.cache-hit != 'true'
         run: meteor npm ci
