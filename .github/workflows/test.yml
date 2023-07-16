@@ -22,7 +22,9 @@ jobs:
         uses: actions/cache@v3
         id: cache-primes
         with:
-         path: node_modules
+         path: |
+           node_modules
+           dist/scripts/addToScripts
          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
 
       - name: Install dependencies # (3)
