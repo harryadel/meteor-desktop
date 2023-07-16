@@ -34,6 +34,7 @@ jobs:
       - name: Install NPM Dependencies
         if: steps.files-cache.outputs.cache-hit != 'true'
         run: pwd && meteor npm ci
+      - run: pwd
 
   test:
     needs: build
