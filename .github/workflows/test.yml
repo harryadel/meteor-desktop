@@ -26,7 +26,7 @@ jobs:
       - name: Install/Retrieve Meteor
         run: |
               var="$(~/.meteor/meteor --version)"
-              if [[ $var =~ "Meteor 2.6" ]]; then
+              if [[ $var == "Meteor 2.6" ]]; then
                 echo "Up-to-date"
               else
                 curl https://install.meteor.com/?release=2.6 | /bin/sh
