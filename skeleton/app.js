@@ -567,7 +567,9 @@ export default class App {
         const windowSettings = {
             width: 800,
             height: 600,
-            webPreferences: {},
+            webPreferences: {
+                enableRemoteModule: true
+            },
             show: false
         };
 
