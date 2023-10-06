@@ -1,15 +1,20 @@
 {
     "presets": [
-        ["@babel/env", {
-            "targets": {
-                "node": "12"
+        [
+            "@babel/env",
+            {
+                "targets": {
+                    "node": "12"
+                },
             }
-        }]
+        ]
     ],
     "sourceMaps": true,
     "env": {
         "test": {
-            "plugins": ["istanbul"]
+            "plugins": [
+                "istanbul"
+            ]
         }
     }
 }
