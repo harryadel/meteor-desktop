@@ -8,7 +8,8 @@ import sinon from 'sinon';
 import fs from 'fs';
 import path from 'path';
 import shell from 'shelljs';
-import { Application } from 'spectron';
+import { browser, expect } from '@wdio/globals'
+// import { browser } from 'wdio-electron-service';
 import mockery from 'mockery';
 
 import mockerySettings from '../helpers/mockerySettings';
@@ -134,18 +135,21 @@ describe('desktop', () => {
 
         async function runIt() {
             // Run it.
-            app = new Application({
-                path: require(path.join(appDir, 'node_modules', 'electron')),
-                args: [path.join(appDir, '.meteor', 'desktop-build')],
-                requireName: 'electronRequire',
-                startTimeout: 60000,
-                env: {
-                    NODE_ENV: 'test',
-                    ELECTRON_ENV: 'test',
-                    METEOR_DESKTOP_NO_SPLASH_SCREEN: 1
-                },
-                chromeDriverLogPath: path.join(__dirname, 'chrome.log')
-            });
+            app = browser.electron.app;
+            /* app = new Application({ */
+            /* path: require(path.join(appDir, 'node_modules', 'electron')), */
+            /* args: [path.join(appDir, '.meteor', 'desktop-build')], */
+            /* requireName: 'electronRequire', */
+            /* startTimeout: 60000, */
+            /* env: { */
+            /* NODE_ENV: 'test', */
+            /* ELECTRON_ENV: 'test', */
+            /* METEOR_DESKTOP_NO_SPLASH_SCREEN: 1 */
+            /* }, */
+            /* chromeDriverLogPath: path.join(__dirname, 'chrome.log') */
+            /* }); */
+
+
             try {
                 await app.start();
                 await waitForApp(app);

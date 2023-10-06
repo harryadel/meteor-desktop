@@ -16,3 +16,6 @@ port.cfg
 tests/.__tmp/autoupdate/Downloading
 tests/.__tmp/autoupdate/autoupdate.json
 tests/.__tmp/meteorProject
+tests/integration/chrome.log
+wdio-logs/wdio-chromedriver.log
+wdio-logs/wdio.log
